@@ -1,6 +1,8 @@
 let btnI = document.getElementById('like');
 let likeCount = document.querySelector('.like-count');
-let count = 0;
+let count = localStorage.getItem('likesCount', JSON.stringify());
+likeCount.innerHTML = `${count} likes`;
+
 let click = 1;
 btnI.addEventListener('click', likeCounter);
 function likeCounter(){
@@ -8,8 +10,10 @@ function likeCounter(){
         count++;
         likeCount.innerHTML = `${count} likes`;
         click = 0;
+        localStorage.setItem('likesCount', JSON.stringify(count));
     }else{
         click = 1;
     }
+
     btnI.classList.toggle('active');    
 }
